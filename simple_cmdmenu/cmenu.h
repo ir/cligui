@@ -111,21 +111,21 @@ private:
 };
 
 // dropbox
-class cdropbox : public citem
+class cdropbox : public ccheckbox
 {
 public:
 	cdropbox(std::string name, std::vector<citem*> items)
-		: citem(name, []() {; }) {
+		: ccheckbox(name, []() {; }) {
 		this->name = name;
 		this->items = items;
 	}
 	~cdropbox() {}
-
-	virtual std::string draw() {
+	
+	virtual std::string draw() override {
 		std::string output = "[ ] " + name + "\n";
 		if (state) {
 			output[1] = 'X';
-			for(auto& i : items) {
+			for (auto& i : items) {
 				output += " - " + i->draw();
 			}
 		}
@@ -135,7 +135,7 @@ public:
 		return output;
 	}
 
-	virtual std::function<void()> call() {
+	virtual std::function<void()> call() override {
 		state = !state;
 		// get input
 		// if not opened, open

@@ -14,8 +14,12 @@ int main()
 	cbutton cb = cbutton("button", []() {std::cout << "button1"; });
 	ccheckbox ccb = ccheckbox("checkbox", []() {std::cout << "checkbox1"; });
 	cslider cs = cslider("slider", []() {std::cout << "slider1"; });
-	cdropbox cd = cdropbox("dropbox", { &ccb });
 	
+	cbutton cb2 = cbutton("button2", []() {; });
+
+	cdropbox cd = cdropbox("dropbox", { &ccb, &cb2 });
+	
+
 	cd.call();
 	
 	pMenu->addmul({ &cb, &ccb, &cs, &cd });
