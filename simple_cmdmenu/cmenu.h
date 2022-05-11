@@ -206,7 +206,7 @@ public:
 		// call
 	}
 	
-	void setup(cmenu* pMenu);
+	void setup();
 	
 private:
 	int count = 0;
