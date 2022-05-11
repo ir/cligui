@@ -95,11 +95,11 @@ public:
 	}
 	~cslider() {}
 
-	virtual std::string draw() {
+	virtual std::string draw() override {
 		return "[" + std::to_string(value) + "] " + name + "\n";
 	}
 
-	virtual std::function<void()> call() {
+	virtual std::function<void()> call() override {
 		// ask user for input n change value
 		return func;
 	}
