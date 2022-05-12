@@ -16,13 +16,15 @@ int main()
 	cslider cs = cslider("slider", []() {std::cout << "slider1"; });
 	
 	cbutton cb2 = cbutton("button2", []() {; });
-
-	cdropbox cd = cdropbox("dropbox", { &ccb, &cb2 });
+	cdropbox cdd = cdropbox("dropbox2", { &cs });
+	cdropbox cd = cdropbox("dropbox", { &ccb, &cb2, &cdd });
 	
 	cbutton cb3 = cbutton("button3", []() {; });
 	
 	cd.call();
-
+	cdd.call();
+	cs.call();
+	
 	pMenu->addmul({ &cb, &ccb, &cs, &cd, &cb3 });
 	
 	pMenu->draw();

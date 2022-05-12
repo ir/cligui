@@ -22,11 +22,11 @@ public:
 	}
 	~citem() {}
 
-	virtual std::string draw() {
+	inline virtual std::string draw() {
 		return name + " is a base citem\n";
 	}
 
-	virtual std::function<void()> call() {
+	inline virtual std::function<void()> call() {
 		return func;
 	}
 
@@ -84,7 +84,12 @@ public:
 		state = !state;
 		return func;
 	}
-
+	
+	// get state
+	inline bool get_state() {
+		return state;
+	}
+	
 private:
 	bool state = false;
 	std::string name;
@@ -92,7 +97,7 @@ private:
 };
 
 // slider
-class cslider : public citem
+class cslider : public citem 
 {
 public:
 	cslider(std::string name, std::function<void()> func)
@@ -102,11 +107,11 @@ public:
 	}
 	~cslider() {}
 
-	virtual std::string draw() override {
+	inline virtual std::string draw() override {
 		return "[" + std::to_string(value) + "] " + name + "\n";
 	}
 
-	virtual std::function<void()> call() override {
+	inline virtual std::function<void()> call() override {
 		// ask user for input n change value
 		return func;
 	}
@@ -117,8 +122,15 @@ private:
 	std::function<void()> func;
 };
 
+/*
+* 1. add better way of visualizing dropboxes within dropboxes
+*	- store current level of indentation
+*		during a draw, the dropbox must know the current level of indentation, 
+*		the dropbox itself could store the indentation level 
+*		but if you move the dropbox around you'll have to make sure to properly update that information
+*/
 // dropbox
-class cdropbox : public ccheckbox
+class cdropbox : public ccheckbox 
 {
 public:
 	cdropbox(std::string name, std::vector<citem*> items)
@@ -131,10 +143,10 @@ public:
 	}
 	~cdropbox() {}
 	
-	virtual std::string draw() override {
+	inline virtual std::string draw() override {
 		std::string output = "[ ] " + name + "\n";
 		if (state) {
-			output[1] = 'X';
+			output[1] = 'D';
 			for (size_t i = 0; i < item_list.size(); i++) {
 				output += "  - " + std::to_string(i) + ": " + item_list[i].item->draw();
 			}
@@ -145,7 +157,7 @@ public:
 		return output;
 	}
 
-	virtual std::function<void()> call() override {
+	inline virtual std::function<void()> call() override {
 		state = !state;
 		// get input
 		// if not opened, open
@@ -163,6 +175,29 @@ private:
 };
 
 /*
+* is this really necessary? i feel like cdropbox already basically does this
+* 
+class child : public cdropbox
+{
+public:
+	child(std::string name, ccheckbox* parent, std::vector<citem*> items)
+		: cdropbox(name, items) {
+		this->name = name;
+		this->items = items;
+		this->enabled = parent->get_state();
+	}
+	child()
+	
+
+private:
+	bool enabled;
+	int count;
+	std::string name;
+	std::vector<citem*> items;
+};
+*/
+
+/*
 * 1. tabs
 *	use directory type system
 * 
@@ -170,6 +205,9 @@ private:
 *	use existing button
 * 
 * 3. way of actually differentiating items from one another
+* 
+* 4. way of only displaying items if they are enabled
+*	parent item(?)
 * 
 */
 
