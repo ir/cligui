@@ -5,6 +5,13 @@
 #include <functional>
 #include <iostream>
 
+class citem;
+
+struct item {
+	int id;
+	citem* item;
+};
+
 // base item class
 class citem
 {
@@ -117,7 +124,10 @@ public:
 	cdropbox(std::string name, std::vector<citem*> items)
 		: ccheckbox(name, []() {; }) {
 		this->name = name;
-		this->items = items;
+		for (auto& i : items) {
+			this->count++;
+			this->item_list.push_back({ this->count, i });
+		}
 	}
 	~cdropbox() {}
 	
@@ -125,8 +135,8 @@ public:
 		std::string output = "[ ] " + name + "\n";
 		if (state) {
 			output[1] = 'X';
-			for (auto& i : items) {
-				output += " - " + i->draw();
+			for (size_t i = 0; i < item_list.size(); i++) {
+				output += "  - " + std::to_string(i) + ": " + item_list[i].item->draw();
 			}
 		}
 		else {
@@ -139,14 +149,17 @@ public:
 		state = !state;
 		// get input
 		// if not opened, open
-		// if already opened, ask user which item they want to select, if they input nothing ('') close menu
+		// if already opened, ask user which item they want to select
+		// if they input nothing ('') close menu
+		// otherwise, select a number corresponding to the item, and then call the item
 		return []() {; };
 	}
 
 private:
 	bool state = false;
+	int count = 0;
 	std::string name;
-	std::vector<citem*> items;
+	std::vector<item> item_list;
 };
 
 /*
@@ -170,13 +183,18 @@ public:
 
 	// add a single item
 	inline void add(citem* item) {
-		item_list.push_back(item);
+		count++;
+		item_list.push_back({ count, item });
 	}
 
+	/*
+	* 1. introduce tabs
+	*/
 	// add multiple items at a time
 	inline void addmul(std::vector<citem*> data) {
 		for (const auto& d : data) {
-			item_list.push_back(d);
+			count++;
+			item_list.push_back({ count, d });
 		}
 	}
 
@@ -184,12 +202,12 @@ public:
 	inline void call(citem* item) {
 		item->call()();
 	}
-	
+
 	// draw the menu
 	inline void draw() {
 		std::cout << tab << std::endl << "-------\n";
 		for (auto& i : item_list) {
-			std::cout << i->draw();
+			std::cout << i.id << ": " << i.item->draw();
 		}
 	}
 
@@ -197,7 +215,7 @@ public:
 	inline void input() {
 		//todo
 	}
-	
+
 	// run
 	inline void run() {
 		// draw
@@ -205,13 +223,19 @@ public:
 		// input
 		// call
 	}
-	
+
+	/*
+	* 1. custom menu name, will display in the top left corner and as console text (animation[?])
+	* 2. adds tabs
+	* 3. adds all items into menu
+	*/
 	void setup();
-	
+
 private:
 	int count = 0;
 	std::string tab = "main";
-	std::vector<citem*> item_list;
+	std::vector<item> item_list;
+	//std::vector<citem*> item_list;
 };
 
 

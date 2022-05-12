@@ -7,43 +7,38 @@
       <FileName>cmenu.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="citem">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAEAAAAAAAAIAAAAAAAAEAAEAAAAAQAAAAAA=</HashCode>
+      <FileName>cmenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="cbutton">
-    <Position X="11.25" Y="3.5" Width="1.5" />
-    <InheritanceLine Type="citem">
-      <InheritanceModifierLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.041" Y="0.1" Height="0.182" Width="0.5" />
-      </InheritanceModifierLabel>
-    </InheritanceLine>
+    <Position X="8.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAAAAAIAAAAAAAgEIAEAAAAAAAAAAAA=</HashCode>
       <FileName>cmenu.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ccheckbox">
-    <Position X="7.25" Y="3.5" Width="1.5" />
+    <Position X="10.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAAAAAIIAAAAAAAkAAEEAAAAAAAAAAA=</HashCode>
       <FileName>cmenu.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="citem">
-    <Position X="8" Y="0.5" Width="1.5" />
+  <Class Name="cdropbox">
+    <Position X="12.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAAEAAAAAAAAIAAAAAAAAEAAEAAAAAQAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAEAAIgAABAIAAAAAAAIEAAAEAAAAAAAAAAA=</HashCode>
       <FileName>cmenu.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="cslider">
-    <Position X="9.25" Y="3.5" Width="1.5" />
+    <Position X="5.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgEAAAAAAAAIAAAAAAAAEACEAAAAAAAgAAAA=</HashCode>
-      <FileName>cmenu.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="cdropbox">
-    <Position X="5.25" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAIgAAAAoAAAAAAAAEAAAEAAAAAAAAAAA=</HashCode>
       <FileName>cmenu.h</FileName>
     </TypeIdentifier>
   </Class>

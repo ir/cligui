@@ -19,10 +19,11 @@ int main()
 
 	cdropbox cd = cdropbox("dropbox", { &ccb, &cb2 });
 	
-
-	cd.call();
+	cbutton cb3 = cbutton("button3", []() {; });
 	
-	pMenu->addmul({ &cb, &ccb, &cs, &cd });
+	cd.call();
+
+	pMenu->addmul({ &cb, &ccb, &cs, &cd, &cb3 });
 	
 	pMenu->draw();
 	
