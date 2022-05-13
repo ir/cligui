@@ -9,12 +9,6 @@
 
 int main()
 {
-
-	/* pMenu::setup(
-		"menu name",
-		{"main", "aimbot", "visuals"},
-	)
-	*/
 	
 
 	std::shared_ptr<cmenu> pMenu = std::make_shared<cmenu>("brasilhook");
